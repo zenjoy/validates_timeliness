@@ -9,8 +9,12 @@ module ValidatesTimeliness
       # It's a minor usability improvement which is rarely an issue for the user.
 
       included do
-        alias_method_chain :datetime_selector, :timeliness
-        alias_method_chain :value, :timeliness
+        # alias_method_chain :datetime_selector, :timeliness
+        alias_method :datetime_selector_without_timeliness, :datetime_selector
+        alias_method :datetime_selector, :datetime_selector_with_timeliness
+        # alias_method_chain :value, :timeliness
+        alias_method :value_without_timeliness, :value
+        alias_method :value, :value_with_timeliness
       end
 
       class TimelinessDateTime

@@ -56,7 +56,9 @@ module Mongoid::Document
       _clear_timeliness_cache
       reload_without_timeliness
     end
-    alias_method_chain :reload, :timeliness
+    # alias_method_chain :reload, :timeliness
+    alias_method :reload_without_timeliness, :reload
+    alias_method :reload, :reload_with_timeliness
   else
     include ValidatesTimeliness::ORM::Mongoid::Reload
   end

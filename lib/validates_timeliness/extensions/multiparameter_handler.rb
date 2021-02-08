@@ -7,7 +7,9 @@ module ValidatesTimeliness
       # assignment from the date/time select view helpers
 
       included do
-        alias_method_chain :instantiate_time_object, :timeliness
+        # alias_method_chain :instantiate_time_object, :timeliness
+        alias_method :instantiate_time_object_without_timeliness, :instantiate_time_object
+        alias_method :instantiate_time_object, :instantiate_time_object_with_timeliness
         alias_method :execute_callstack_for_multiparameter_attributes, :execute_callstack_for_multiparameter_attributes_with_timeliness
         alias_method :read_value_from_parameter, :read_value_from_parameter_with_timeliness
       end
